@@ -1,0 +1,24 @@
+name: quotez
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  device_preview_screenshot: ^1.0.0
+  flutter:
+    sdk: flutter
+  fpdart: ^1.1.0
+  quotez_client:
+    path: ../quotez_client
+  serverpod_flutter: 2.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^6.0.0
+
+flutter:
+  uses-material-design: true
