@@ -1,0 +1,12 @@
+class: Author
+
+fields:
+    id: String?
+    name: String
+    bio: String
+    description: String
+    link: String
+    quoteCount: int
+    slug: String
+    dateAdded: DateTime
+    dateModified: DateTime

@@ -1,0 +1,11 @@
+class: Quote
+
+fields:
+    id: String?
+    content: String
+    author: String
+    tags: List<String>
+    authorSlug: String
+    length: int
+    dateAdded: DateTime
+    dateModified: DateTime

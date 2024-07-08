@@ -1,0 +1,9 @@
+class: AuthorsResult
+
+fields:
+    count: int
+    totalCount: int
+    page: int
+    totalPages: int
+    lastItemIndex: int?
+    results: List<Author>

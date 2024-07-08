@@ -1,0 +1,9 @@
+class: Tag
+
+fields:
+    id: String?
+    name: String
+    slug: String
+    quoteCount: int
+    dateAdded: DateTime
+    dateModified: DateTime

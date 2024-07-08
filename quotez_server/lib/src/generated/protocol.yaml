@@ -1,0 +1,11 @@
+author:
+  - list:
+  - get:
+  - search:
+quote:
+  - list:
+  - search:
+  - get:
+  - random:
+tag:
+  - list:
