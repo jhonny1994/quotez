@@ -112,16 +112,14 @@ class QuoteEndpoint extends Endpoint {
   }
 
   Future<List<Quote>?> random(
-    Session session,
+    Session session, {
     List<String>? tags,
-    int? limit,
-  ) async {
+    int limit = 1,
+  }) async {
     const quotesUrl = '/quotes/random';
 
     final queryParameters = <String, dynamic>{};
-    if (limit != null) {
-      queryParameters['limit'] = limit.toString();
-    }
+    queryParameters['limit'] = limit.toString();
     if (tags != null && tags.isNotEmpty) {
       queryParameters['tags'] = tags.join(',');
     }
