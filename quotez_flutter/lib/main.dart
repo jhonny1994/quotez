@@ -2,7 +2,10 @@ import 'dart:io';
 
 import 'package:device_preview_screenshot/device_preview_screenshot.dart';
 import 'package:flutter/material.dart';
-import 'package:quotez/presentation/home_screen.dart';
+import 'package:quotez/config/create_text_theme.dart';
+import 'package:quotez/config/theme.dart';
+import 'package:quotez/features/core/core.dart';
+import 'package:quotez/features/onboarding/onboarding.dart';
 
 void main() => runApp(
       DevicePreview(
@@ -20,11 +23,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = createTextTheme(context, 'Rubik', 'Rubik');
+    final theme = MaterialTheme(textTheme);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
-      home: const HomeScreen(),
+      title: 'Quotez',
+      theme: theme.light(),
+      home: const BaseScreen(
+        child: OnboardingScreen(),
+      ),
     );
   }
 }

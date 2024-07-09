@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   fpdart: ^1.1.0
+  google_fonts: ^6.2.1
   quotez_client:
     path: ../quotez_client
   serverpod_flutter: 2.0.1
@@ -22,3 +23,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  
+  assets:
+    - assets/
