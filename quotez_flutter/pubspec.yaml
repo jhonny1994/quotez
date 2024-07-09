@@ -21,6 +21,7 @@ dependencies:
     path: ../quotez_client
   riverpod_annotation: ^2.3.5
   serverpod_flutter: 2.0.1
+  shared_preferences: ^2.2.3
   url_launcher: ^6.3.0
 
 dev_dependencies:

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quotez/features/theme/theme.dart';
 
-class BaseScreen extends StatelessWidget {
+class BaseScreen extends ConsumerWidget {
   const BaseScreen({
     required this.child,
     this.title,
@@ -9,7 +11,7 @@ class BaseScreen extends StatelessWidget {
   final Widget child;
   final String? title;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: title == null
@@ -24,7 +26,7 @@ class BaseScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.nightlight),
-            onPressed: () {},
+            onPressed: () => ref.read(themeNotifierProvider.notifier).toggle(),
           ),
         ],
       ),

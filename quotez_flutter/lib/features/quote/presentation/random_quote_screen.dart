@@ -40,7 +40,8 @@ class RandomQuoteScreen extends ConsumerWidget {
                                   vertical: 4,
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () =>
+                                  ref.invalidate(randomQuoteProvider),
                               child: Text('#${e.replaceAll(' ', '_')}'),
                             ),
                           )

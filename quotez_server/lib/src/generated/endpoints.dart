@@ -205,15 +205,15 @@ class Endpoints extends _i1.EndpointDispatch {
         'random': _i1.MethodConnector(
           name: 'random',
           params: {
+            'limit': _i1.ParameterDescription(
+              name: 'limit',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
             'tags': _i1.ParameterDescription(
               name: 'tags',
               type: _i1.getType<List<String>?>(),
               nullable: true,
-            ),
-            'limit': _i1.ParameterDescription(
-              name: 'limit',
-              type: _i1.getType<int>(),
-              nullable: false,
             ),
           },
           call: (
@@ -222,8 +222,8 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['quote'] as _i3.QuoteEndpoint).random(
             session,
-            tags: params['tags'],
             limit: params['limit'],
+            tags: params['tags'],
           ),
         ),
       },

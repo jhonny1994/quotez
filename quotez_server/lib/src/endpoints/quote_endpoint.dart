@@ -113,17 +113,18 @@ class QuoteEndpoint extends Endpoint {
 
   Future<List<Quote>?> random(
     Session session, {
+    int? limit,
     List<String>? tags,
-    int limit = 1,
   }) async {
     const quotesUrl = '/quotes/random';
 
     final queryParameters = <String, dynamic>{};
-    queryParameters['limit'] = limit.toString();
+    if (limit != null) {
+      queryParameters['limit'] = limit.toString();
+    }
     if (tags != null && tags.isNotEmpty) {
       queryParameters['tags'] = tags.join(',');
     }
-
     try {
       final response = await dio.get<List<dynamic>>(
         quotesUrl,

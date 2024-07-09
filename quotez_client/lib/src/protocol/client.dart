@@ -99,15 +99,15 @@ class EndpointQuote extends _i1.EndpointRef {
       );
 
   _i2.Future<List<_i6.Quote>?> random({
+    int? limit,
     List<String>? tags,
-    required int limit,
   }) =>
       caller.callServerEndpoint<List<_i6.Quote>?>(
         'quote',
         'random',
         {
-          'tags': tags,
           'limit': limit,
+          'tags': tags,
         },
       );
 }

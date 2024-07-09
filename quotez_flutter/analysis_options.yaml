@@ -10,3 +10,4 @@ linter:
   rules:
     public_member_api_docs: false
     unnecessary_lambdas: false
+    flutter_style_todos: false
