@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quotez/features/core/core.dart';
 import 'package:quotez/features/quote/quote.dart';
-import 'package:quotez/features/tag/application/tag_notifier.dart';
+import 'package:quotez/features/tag/tag.dart';
 
 class TagScreen extends ConsumerWidget {
   const TagScreen({super.key});
@@ -49,18 +49,18 @@ class TagScreen extends ConsumerWidget {
         ),
         error: (error, stackTrace) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  error.toString(),
+            ScaffoldMessenger.of(context)
+              ..removeCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text(
+                    error.toString(),
+                  ),
                 ),
-              ),
-            );
+              );
           });
           return FilledButton(
-            onPressed: () {
-              //TODO: add reload logic
-            },
+            onPressed: () => ref.refresh(tagListProvider),
             child: const Text('Reload'),
           );
         },

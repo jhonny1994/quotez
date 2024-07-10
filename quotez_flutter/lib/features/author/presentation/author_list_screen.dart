@@ -32,18 +32,18 @@ class AuthorListScreen extends ConsumerWidget {
         ),
         error: (error, stackTrace) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  error.toString(),
+            ScaffoldMessenger.of(context)
+              ..removeCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text(
+                    error.toString(),
+                  ),
                 ),
-              ),
-            );
+              );
           });
           return FilledButton(
-            onPressed: () {
-              //TODO: add reload logic
-            },
+            onPressed: () => ref.refresh(authorListProvider),
             child: const Text('Reload'),
           );
         },

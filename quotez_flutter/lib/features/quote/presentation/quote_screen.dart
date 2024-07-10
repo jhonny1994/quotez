@@ -42,7 +42,7 @@ class QuoteScreen extends ConsumerWidget {
                                 ),
                               ),
                               onPressed: () =>
-                                  ref.invalidate(randomQuoteProvider),
+                                  ref.refresh(randomQuoteProvider(tag: tag)),
                               child: Text('#${e.replaceAll(' ', '_')}'),
                             ),
                           )
@@ -91,18 +91,18 @@ class QuoteScreen extends ConsumerWidget {
         ),
         error: (error, stackTrace) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  error.toString(),
+            ScaffoldMessenger.of(context)
+              ..removeCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text(
+                    error.toString(),
+                  ),
                 ),
-              ),
-            );
+              );
           });
           return FilledButton(
-            onPressed: () {
-              //TODO: add reload logic
-            },
+            onPressed: () => ref.refresh(randomQuoteProvider(tag: tag)),
             child: const Text('Reload'),
           );
         },

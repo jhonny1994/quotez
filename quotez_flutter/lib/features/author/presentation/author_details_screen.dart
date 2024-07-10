@@ -82,18 +82,18 @@ class AuthorDetailsScreen extends ConsumerWidget {
         ),
         error: (error, stackTrace) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  error.toString(),
+            ScaffoldMessenger.of(context)
+              ..removeCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text(
+                    error.toString(),
+                  ),
                 ),
-              ),
-            );
+              );
           });
           return FilledButton(
-            onPressed: () {
-              //TODO: add reload logic
-            },
+            onPressed: () => ref.refresh(authorDetailsProvider(authorId)),
             child: const Text('Reload'),
           );
         },
