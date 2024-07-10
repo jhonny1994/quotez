@@ -24,9 +24,8 @@ class TagScreen extends ConsumerWidget {
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => BaseScreen(
-                    title: 'Quotez',
                     child: QuoteScreen(
-                      tag: r[index],
+                      tag: r[index].slug,
                     ),
                   ),
                 ),

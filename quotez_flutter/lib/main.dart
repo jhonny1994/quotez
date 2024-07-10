@@ -8,7 +8,6 @@ import 'package:quotez/config/shared_prefrences_provider.dart';
 import 'package:quotez/config/theme.dart';
 import 'package:quotez/features/core/core.dart';
 import 'package:quotez/features/onboarding/onboarding.dart';
-import 'package:quotez/features/theme/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {

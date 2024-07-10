@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:quotez/features/theme/theme.dart';
+import 'package:quotez/features/core/core.dart';
 
 class BaseScreen extends ConsumerWidget {
   const BaseScreen({
@@ -15,7 +15,10 @@ class BaseScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: title == null
-            ? null
+            ? const CircleAvatar(
+                backgroundImage: AssetImage('assets/logo.png'),
+                backgroundColor: Colors.transparent,
+              )
             : Text(
                 title!,
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(

@@ -21,7 +21,6 @@ class AuthorListScreen extends ConsumerWidget {
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => BaseScreen(
-                    title: r.results[index].name,
                     child: AuthorDetailsScreen(
                       authorId: r.results[index].id!,
                     ),

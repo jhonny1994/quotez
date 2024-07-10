@@ -24,9 +24,16 @@ class AuthorDetailsScreen extends ConsumerWidget {
           (r) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Text(r.description),
+              Text(
+                r.name,
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
+              Text(r.description),
+              const Divider(height: 32),
+              sectionTitle(context, 'Description'),
+              Text(r.bio),
               const Divider(height: 32),
               Row(
                 children: [
@@ -53,17 +60,21 @@ class AuthorDetailsScreen extends ConsumerWidget {
                 ],
               ),
               const Divider(height: 32),
-              sectionTitle(context, 'Description'),
-              Text(r.bio),
-              const Divider(height: 32),
-              sectionTitle(context, 'Quotes'),
               if (r.quotes != null && r.quotes!.isNotEmpty)
                 Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: r.quotes!.length,
-                    itemBuilder: (context, index) =>
-                        quoteCard(r.quotes![index]),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      sectionTitle(context, 'Quotes'),
+                      Expanded(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: r.quotes!.length,
+                          itemBuilder: (context, index) =>
+                              quoteCard(r.quotes![index]),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
             ],

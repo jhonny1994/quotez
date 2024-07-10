@@ -47,8 +47,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const BaseScreen(
-                        title: 'Random Quote',
-                        child: RandomQuoteScreen(),
+                        child: QuoteScreen(),
                       ),
                     ),
                   ),
