@@ -50,6 +50,7 @@ class MyApp extends ConsumerWidget {
       darkTheme: theme.dark(),
       themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
       home: const BaseScreen(
+        title: 'Quotez',
         child: OnboardingScreen(),
       ),
     );
