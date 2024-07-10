@@ -6,6 +6,6 @@ part 'client.g.dart';
 
 @riverpod
 Client client(ClientRef ref) {
-  return Client('http://$localhost:8080/')
+  return Client('https://f4s12l97-8080.euw.devtunnels.ms/')
     ..connectivityMonitor = FlutterConnectivityMonitor();
 }
