@@ -13,3 +13,16 @@ Future<Either<String, AuthorsResult>> authorList(AuthorListRef ref) async {
     return left('No authors found');
   }
 }
+
+@riverpod
+Future<Either<String, Author>> authorDetails(
+  AuthorDetailsRef ref,
+  String id,
+) async {
+  final request = await ref.read(clientProvider).author.get(id);
+  if (request != null) {
+    return right(request);
+  } else {
+    return left('No authors found');
+  }
+}

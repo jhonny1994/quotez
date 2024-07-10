@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
+import '../protocol.dart' as _i2;
 import 'package:serverpod_serialization/serverpod_serialization.dart';
 
 abstract class Author
@@ -23,6 +24,7 @@ abstract class Author
     required this.slug,
     required this.dateAdded,
     required this.dateModified,
+    this.quotes,
   });
 
   factory Author({
@@ -35,6 +37,7 @@ abstract class Author
     required String slug,
     required DateTime dateAdded,
     required DateTime dateModified,
+    List<_i2.Quote>? quotes,
   }) = _AuthorImpl;
 
   factory Author.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -50,6 +53,9 @@ abstract class Author
           _i1.DateTimeJsonExtension.fromJson(jsonSerialization['dateAdded']),
       dateModified:
           _i1.DateTimeJsonExtension.fromJson(jsonSerialization['dateModified']),
+      quotes: (jsonSerialization['quotes'] as List?)
+          ?.map((e) => _i2.Quote.fromJson((e as Map<String, dynamic>)))
+          .toList(),
     );
   }
 
@@ -71,6 +77,8 @@ abstract class Author
 
   DateTime dateModified;
 
+  List<_i2.Quote>? quotes;
+
   Author copyWith({
     String? id,
     String? name,
@@ -81,6 +89,7 @@ abstract class Author
     String? slug,
     DateTime? dateAdded,
     DateTime? dateModified,
+    List<_i2.Quote>? quotes,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -94,6 +103,8 @@ abstract class Author
       'slug': slug,
       'dateAdded': dateAdded.toJson(),
       'dateModified': dateModified.toJson(),
+      if (quotes != null)
+        'quotes': quotes?.toJson(valueToJson: (v) => v.toJson()),
     };
   }
 
@@ -109,6 +120,8 @@ abstract class Author
       'slug': slug,
       'dateAdded': dateAdded.toJson(),
       'dateModified': dateModified.toJson(),
+      if (quotes != null)
+        'quotes': quotes?.toJson(valueToJson: (v) => v.toJsonForProtocol()),
     };
   }
 
@@ -131,6 +144,7 @@ class _AuthorImpl extends Author {
     required String slug,
     required DateTime dateAdded,
     required DateTime dateModified,
+    List<_i2.Quote>? quotes,
   }) : super._(
           id: id,
           name: name,
@@ -141,6 +155,7 @@ class _AuthorImpl extends Author {
           slug: slug,
           dateAdded: dateAdded,
           dateModified: dateModified,
+          quotes: quotes,
         );
 
   @override
@@ -154,6 +169,7 @@ class _AuthorImpl extends Author {
     String? slug,
     DateTime? dateAdded,
     DateTime? dateModified,
+    Object? quotes = _Undefined,
   }) {
     return Author(
       id: id is String? ? id : this.id,
@@ -165,6 +181,7 @@ class _AuthorImpl extends Author {
       slug: slug ?? this.slug,
       dateAdded: dateAdded ?? this.dateAdded,
       dateModified: dateModified ?? this.dateModified,
+      quotes: quotes is List<_i2.Quote>? ? quotes : this.quotes?.clone(),
     );
   }
 }

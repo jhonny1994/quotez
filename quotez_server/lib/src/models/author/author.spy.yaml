@@ -10,3 +10,4 @@ fields:
     slug: String
     dateAdded: DateTime
     dateModified: DateTime
+    quotes: List<Quote>?

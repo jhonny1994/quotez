@@ -67,8 +67,18 @@ class AuthorEndpoint extends Endpoint {
       );
       if (response.data != null) {
         final author = Author.fromJson(response.data!);
+
+        final oldQuotesList = response.data!['quotes'] as List<dynamic>;
+
+        final newQuotesList = oldQuotesList
+            .map(
+              (e) => Quote.fromJson(e as Map<String, dynamic>),
+            )
+            .toList();
+
         return author.copyWith(
           id: response.data!['_id'] as String,
+          quotes: newQuotesList,
         );
       } else {
         return null;
@@ -94,15 +104,15 @@ class AuthorEndpoint extends Endpoint {
       );
       if (response.data != null) {
         final searchResult = AuthorsResult.fromJson(response.data!);
-        final newQuotesList = <Author>[];
+        final newAuthorsList = <Author>[];
         for (var index = 0; index < searchResult.results.length; index++) {
-          newQuotesList.add(
+          newAuthorsList.add(
             searchResult.results.elementAt(index).copyWith(
                   id: response.data!['results'][index]['_id'] as String,
                 ),
           );
         }
-        return searchResult.copyWith(results: newQuotesList);
+        return searchResult.copyWith(results: newAuthorsList);
       } else {
         return null;
       }

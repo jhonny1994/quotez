@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quotez/features/author/author.dart';
+import 'package:quotez/features/core/core.dart';
 
-class AuthorScreen extends ConsumerWidget {
-  const AuthorScreen({super.key});
+class AuthorListScreen extends ConsumerWidget {
+  const AuthorListScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,7 +18,16 @@ class AuthorScreen extends ConsumerWidget {
             itemBuilder: (context, index) => ListTile(
               title: Text(r.results[index].name),
               subtitle: Text(r.results[index].description),
-              leading: Text(r.results[index].quoteCount.toString()),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => BaseScreen(
+                    title: r.results[index].name,
+                    child: AuthorDetailsScreen(
+                      authorId: r.results[index].id!,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
         ),

@@ -68,6 +68,11 @@ class Protocol extends _i1.SerializationManager {
     if (t == _i1.getType<_i6.Tag?>()) {
       return (data != null ? _i6.Tag.fromJson(data) : null) as T;
     }
+    if (t == _i1.getType<List<_i7.Quote>?>()) {
+      return (data != null
+          ? (data as List).map((e) => deserialize<_i7.Quote>(e)).toList()
+          : null) as dynamic;
+    }
     if (t == List<_i7.Author>) {
       return (data as List).map((e) => deserialize<_i7.Author>(e)).toList()
           as dynamic;

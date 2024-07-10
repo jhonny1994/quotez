@@ -5,4 +5,10 @@ final dio = Dio(
   BaseOptions(
     baseUrl: 'https://api.quotable.io',
   ),
-)..interceptors.add(PrettyDioLogger());
+)..interceptors.add(
+    PrettyDioLogger(
+      responseBody: false,
+      requestHeader: true,
+      responseHeader: true,
+    ),
+  );

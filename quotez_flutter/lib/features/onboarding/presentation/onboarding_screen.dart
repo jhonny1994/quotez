@@ -55,7 +55,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   style: FilledButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
                   ),
-                  label: const Text('Random Quote'),
+                  label: const Text('Quotes'),
                   icon: const Icon(Icons.format_quote),
                 ),
                 const Gap(8),
@@ -71,7 +71,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   style: FilledButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
                   ),
-                  label: const Text('Quotes by Tag'),
+                  label: const Text('Tags'),
                   icon: const Icon(Icons.tag),
                 ),
                 const Gap(8),
@@ -80,14 +80,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     MaterialPageRoute(
                       builder: (context) => const BaseScreen(
                         title: 'Authors',
-                        child: AuthorScreen(),
+                        child: AuthorListScreen(),
                       ),
                     ),
                   ),
                   style: FilledButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
                   ),
-                  label: const Text('Quotes by Author'),
+                  label: const Text('Authors'),
                   icon: const Icon(Icons.person),
                 ),
                 const Spacer(),
