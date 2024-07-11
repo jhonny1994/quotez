@@ -56,6 +56,8 @@ class _QuoteScreenState extends ConsumerState<QuoteScreen> {
                                   const EdgeInsets.symmetric(horizontal: 16),
                               child: Text(
                                 r.content,
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.fade,
                                 style: Theme.of(context).textTheme.displaySmall,
                               ),
                             ),
