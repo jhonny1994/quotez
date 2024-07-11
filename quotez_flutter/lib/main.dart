@@ -5,6 +5,7 @@ import 'package:device_preview_screenshot/device_preview_screenshot.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 import 'package:quotez/config/client.dart';
 import 'package:quotez/config/create_text_theme.dart';
 import 'package:quotez/config/shared_prefrences_provider.dart';
@@ -25,6 +26,8 @@ void main() async {
   final backendUrl = (json.decode(backendUrlresponse.body)
       as Map<String, dynamic>)['backendUrl'] as String;
 
+  final path = (await getApplicationDocumentsDirectory()).path;
+
   runApp(
     ProviderScope(
       overrides: [
@@ -35,9 +38,11 @@ void main() async {
         sharedPreferencesProvider.overrideWithValue(sharedPreferences),
       ],
       child: DevicePreview(
-        tools: const [
+        tools: [
           ...DevicePreview.defaultTools,
-          DevicePreviewScreenshot(),
+          DevicePreviewScreenshot(
+            onScreenshot: screenshotAsFiles(Directory(path)),
+          ),
         ],
         enabled: Platform.isWindows,
         builder: (context) => const MyApp(),
