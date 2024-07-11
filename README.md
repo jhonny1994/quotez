@@ -1,9 +1,6 @@
-# quotez
+# Quotez
 
-A quotes app made with Flutter and serverpod mini as the backend.
-# Trivico
-
-Trivico is a simple quiz app built using Flutter as frontend and serverpod mini as the backend. It uses the Quotes API to fetch quotes and provide a fun and interactive user experience.
+Quotez is a simple quiz app built using Flutter as frontend and serverpod mini as the backend. It uses the Quotes API to fetch quotes and provide a fun and interactive user experience.
 
 ## Features
 
