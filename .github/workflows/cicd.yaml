@@ -22,8 +22,8 @@ jobs:
         run: cd quotez_flutter && flutter pub get
 
       - name: Build APK
-        run: cd quotez_flutter && flutter build apk --release
-
+        run: cd quotez_flutter && flutter build apk
+        
       - name: Extract version from pubspec.yaml
         id: extract_version
         run: |
