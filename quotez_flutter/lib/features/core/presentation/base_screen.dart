@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:quotez/features/core/application/connectivity_notifier.dart';
 import 'package:quotez/features/core/core.dart';
 
 class BaseScreen extends ConsumerWidget {
@@ -12,6 +15,7 @@ class BaseScreen extends ConsumerWidget {
   final String? title;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final connectivity = ref.watch(connectivityProvider);
     return Scaffold(
       appBar: AppBar(
         title: title == null
@@ -36,7 +40,46 @@ class BaseScreen extends ConsumerWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: child,
+          child: Center(
+            child: connectivity.when(
+              data: (internetConnectionStatus) {
+                if (internetConnectionStatus ==
+                    InternetConnectionStatus.connected) {
+                  return child;
+                } else {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text('No internet connection'),
+                      const Gap(8),
+                      FilledButton(
+                        onPressed: () => ref.refresh(connectivityProvider),
+                        child: const Text('Reload'),
+                      ),
+                    ],
+                  );
+                }
+              },
+              error: (error, stackTrace) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  ScaffoldMessenger.of(context)
+                    ..removeCurrentSnackBar()
+                    ..showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          error.toString(),
+                        ),
+                      ),
+                    );
+                });
+                return FilledButton(
+                  onPressed: () => ref.refresh(connectivityProvider),
+                  child: const Text('Reload'),
+                );
+              },
+              loading: () => const CircularProgressIndicator.adaptive(),
+            ),
+          ),
         ),
       ),
     );
