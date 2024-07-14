@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:quotez/features/favorite/application/favorite_notifier.dart';
 import 'package:quotez/features/quote/quote.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
@@ -17,6 +18,7 @@ class QuoteScreen extends ConsumerStatefulWidget {
 class _QuoteScreenState extends ConsumerState<QuoteScreen> {
   final screenshotController = ScreenshotController();
   bool takingScreenshot = false;
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -195,11 +197,23 @@ class _QuoteScreenState extends ConsumerState<QuoteScreen> {
                   ),
                   const Gap(16),
                   IconButton.filled(
-                    onPressed: () {
-                      //TODO: add favorite logic
+                    onPressed: () async {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                      return ref
+                          .read(favoriteNotifierProvider.notifier)
+                          .toggle(r)
+                          .whenComplete(
+                            () => ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Quote added to favorites'),
+                              ),
+                            ),
+                          );
                     },
-                    icon: const Icon(
-                      Icons.favorite,
+                    icon: Icon(
+                      isFavorite ? Icons.favorite : Icons.favorite_border,
                     ),
                   ),
                 ],

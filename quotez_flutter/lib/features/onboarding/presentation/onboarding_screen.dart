@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:quotez/features/author/author.dart';
 import 'package:quotez/features/core/core.dart';
+import 'package:quotez/features/favorite/presentation/favorite_quotes_list_screen.dart';
 import 'package:quotez/features/quote/quote.dart';
 import 'package:quotez/features/tag/tag.dart';
 
@@ -88,6 +89,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                   label: const Text('Authors'),
                   icon: const Icon(Icons.person),
+                ),
+                const Gap(8),
+                FilledButton.icon(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const BaseScreen(
+                        title: 'Favorites',
+                        child: FavoriteQuotesListScreen(),
+                      ),
+                    ),
+                  ),
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                  ),
+                  label: const Text('Favorites'),
+                  icon: const Icon(Icons.favorite),
                 ),
                 const Spacer(),
               ],
