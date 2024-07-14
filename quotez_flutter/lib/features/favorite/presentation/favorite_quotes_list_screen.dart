@@ -20,25 +20,38 @@ class _FavoriteQuotesListScreenState
       child: favorites.when(
         data: (data) => data.isEmpty
             ? const Text('No favorite quotes')
-            : ListView.builder(
-                itemCount: data.length,
-                itemBuilder: (context, index) {
-                  final quote = data[index];
-                  return quoteCard(
-                    quote,
-                    isFavorite: true,
-                    onTap: () => ref
-                        .read(favoriteNotifierProvider.notifier)
-                        .toggle(quote)
-                        .whenComplete(
-                          () => ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Quote removed from favorites'),
+            : Stack(
+                children: [
+                  ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      final quote = data[index];
+                      return quoteCard(
+                        quote,
+                        isFavorite: true,
+                        onTap: () => ref
+                            .read(favoriteNotifierProvider.notifier)
+                            .toggle(quote)
+                            .whenComplete(
+                              () => ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Quote removed from favorites'),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                  );
-                },
+                      );
+                    },
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: FloatingActionButton(
+                      onPressed: () =>
+                          ref.read(favoriteNotifierProvider.notifier).clear(),
+                      child: const Icon(Icons.clear),
+                    ),
+                  ),
+                ],
               ),
         error: (error, stackTrace) {
           WidgetsBinding.instance.addPostFrameCallback((_) {

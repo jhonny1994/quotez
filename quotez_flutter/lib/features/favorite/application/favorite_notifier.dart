@@ -36,4 +36,9 @@ class FavoriteNotifier extends _$FavoriteNotifier {
     }
     return [];
   }
+
+  Future<void> clear() async {
+    state = const AsyncValue.data([]);
+    await ref.read(sharedPreferencesProvider).remove(favoritesKey);
+  }
 }
