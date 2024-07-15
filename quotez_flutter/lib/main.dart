@@ -23,6 +23,7 @@ void main() async {
 
   final backendUrlresponse =
       await http.get(Uri.parse('https://api.npoint.io/ea3018b39e25fc43f4c5/'));
+
   final backendUrl = (json.decode(backendUrlresponse.body)
       as Map<String, dynamic>)['backendUrl'] as String;
 
