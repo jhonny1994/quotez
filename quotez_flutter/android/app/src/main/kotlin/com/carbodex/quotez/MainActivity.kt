@@ -1,4 +1,4 @@
-package com.example.quotez
+package com.carbodex.quotez
 
 import io.flutter.embedding.android.FlutterActivity
 
